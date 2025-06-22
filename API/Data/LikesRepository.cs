@@ -65,9 +65,4 @@ public class LikesRepository(DataContext context, IMapper mapper) : ILikeReposit
 
         return await PagedList<MemberDto>.CreateAsync(query, likesParams.PageNumber, likesParams.PageSize);
     }
-
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
 }
