@@ -21,10 +21,14 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
 
 app.UseAuthentication();
 app.UseAuthorization();
-// Configure the HTTP request pipeline.
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/message");
+app.MapFallbackToController("Index", "Fallback");
 
 var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
